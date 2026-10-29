@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { PrismaPg } from '@prisma/adapter-pg';
 import * as bcrypt from 'bcryptjs';
-import { PrismaClient, StatusAgendamento } from '../src/generated/prisma/client';
+import { PrismaClient, type Servico, StatusAgendamento } from '../src/generated/prisma/client';
 
 const prisma = new PrismaClient({
   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL! }),
@@ -32,7 +32,7 @@ function telefone() {
 }
 
 function semAcento(texto: string) {
-  return texto.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  return texto.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 }
 
 async function main() {
@@ -59,7 +59,7 @@ async function main() {
     { nome: 'Sessão de psicoterapia', duracaoMinutos: 50, preco: 200 },
     { nome: 'Limpeza de pele', duracaoMinutos: 60, preco: 160 },
   ];
-  const servicos = [];
+  const servicos: Servico[] = [];
   for (const s of servicosBase) {
     servicos.push(await prisma.servico.create({ data: s }));
   }
@@ -171,3 +171,4 @@ main()
     process.exit(1);
   })
   .finally(() => prisma.$disconnect());
+  

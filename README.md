@@ -63,22 +63,35 @@ Projeto de portfólio full stack com **Nuxt 4 + Nuxt UI** no front e **NestJS + 
 | Banco | PostgreSQL 16 |
 | Infra | pnpm workspaces, Docker Compose |
 
-## Como rodar
+Pré-requisitos: Node 22+, pnpm 10+ e um banco PostgreSQL. Pode ser um banco gratuito na nuvem (Neon, Supabase), um PostgreSQL instalado na máquina ou o container do `docker-compose.yml`.
 
-Pré-requisitos: Node 22+, pnpm 10+ e Docker (ou um PostgreSQL local).
+**1. Instalar as dependências e criar os arquivos de ambiente**
 
 ```bash
 pnpm install
-
 cp apps/api/.env.example apps/api/.env
 cp apps/web/.env.example apps/web/.env
+```
 
-pnpm db:up
+**2. Configurar o banco**
+
+No `apps/api/.env`, coloque em `DATABASE_URL` a URL de conexão do seu banco. Com Docker, a URL do exemplo já funciona depois de rodar `pnpm db:up`.
+
+**3. Criar as tabelas e popular com dados de demonstração**
+
+```bash
 pnpm db:deploy
 pnpm db:seed
+```
 
+**4. Subir a API e o front, cada um em um terminal**
+
+```bash
 pnpm dev:api
 pnpm dev:web
+```
+
+Para alterar o schema do banco depois, edite `apps/api/prisma/schema.prisma` e rode `pnpm db:migrate`.
 ```
 
 Acesse http://localhost:3000 e entre com uma das contas de demonstração:
