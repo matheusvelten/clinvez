@@ -1,0 +1,11 @@
+node_modules
+dist
+.output
+.nuxt
+.nitro
+.cache
+.data
+.env
+*.log
+.DS_Store
+apps/api/src/generated

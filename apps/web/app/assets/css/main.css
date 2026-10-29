@@ -1,0 +1,14 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+:root {
+  --ui-radius: 0.5rem;
+}
+
+.grade-linha {
+  background-image: linear-gradient(to bottom, var(--ui-border) 1px, transparent 1px);
+}

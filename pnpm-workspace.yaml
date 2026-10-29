@@ -1,0 +1,13 @@
+packages:
+  - apps/*
+
+onlyBuiltDependencies:
+  - "@prisma/engines"
+  - prisma
+  - esbuild
+  - "@parcel/watcher"
+  - "@tailwindcss/oxide"
+  - vue-demi
+
+overrides:
+  "@babel/parser@8": 8.0.8

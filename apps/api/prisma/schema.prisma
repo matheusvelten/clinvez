@@ -1,0 +1,94 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Perfil {
+  ADMIN
+  ATENDENTE
+}
+
+enum StatusAgendamento {
+  AGENDADO
+  CONFIRMADO
+  CONCLUIDO
+  CANCELADO
+  FALTOU
+}
+
+model Usuario {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  senhaHash String   @map("senha_hash")
+  perfil    Perfil   @default(ATENDENTE)
+  ativo     Boolean  @default(true)
+  criadoEm  DateTime @default(now()) @map("criado_em")
+
+  @@map("usuarios")
+}
+
+model Cliente {
+  id             String        @id @default(uuid())
+  nome           String
+  telefone       String
+  email          String?
+  dataNascimento DateTime?     @map("data_nascimento") @db.Date
+  observacoes    String?
+  criadoEm       DateTime      @default(now()) @map("criado_em")
+  agendamentos   Agendamento[]
+
+  @@index([nome])
+  @@map("clientes")
+}
+
+model Profissional {
+  id            String        @id @default(uuid())
+  nome          String
+  especialidade String
+  cor           String        @default("#6366f1")
+  ativo         Boolean       @default(true)
+  criadoEm      DateTime      @default(now()) @map("criado_em")
+  servicos      Servico[]     @relation("ProfissionalServicos")
+  agendamentos  Agendamento[]
+
+  @@map("profissionais")
+}
+
+model Servico {
+  id              String         @id @default(uuid())
+  nome            String
+  duracaoMinutos  Int            @map("duracao_minutos")
+  preco           Decimal        @db.Decimal(10, 2)
+  ativo           Boolean        @default(true)
+  criadoEm        DateTime       @default(now()) @map("criado_em")
+  profissionais   Profissional[] @relation("ProfissionalServicos")
+  agendamentos    Agendamento[]
+
+  @@map("servicos")
+}
+
+model Agendamento {
+  id             String            @id @default(uuid())
+  inicio         DateTime
+  fim            DateTime
+  status         StatusAgendamento @default(AGENDADO)
+  observacoes    String?
+  valor          Decimal           @db.Decimal(10, 2)
+  clienteId      String            @map("cliente_id")
+  profissionalId String            @map("profissional_id")
+  servicoId      String            @map("servico_id")
+  criadoEm       DateTime          @default(now()) @map("criado_em")
+  cliente        Cliente           @relation(fields: [clienteId], references: [id])
+  profissional   Profissional      @relation(fields: [profissionalId], references: [id])
+  servico        Servico           @relation(fields: [servicoId], references: [id])
+
+  @@index([profissionalId, inicio])
+  @@index([inicio])
+  @@map("agendamentos")
+}
