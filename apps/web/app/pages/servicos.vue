@@ -3,7 +3,7 @@ import type { FormSubmitEvent, TableColumn } from '@nuxt/ui'
 import { z } from 'zod'
 import type { Servico } from '~/types'
 
-useHead({ title: 'Serviços · Agendei' })
+useHead({ title: 'Serviços' })
 
 const api = useApi()
 const notificacao = useNotificacao()

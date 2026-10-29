@@ -1,8 +1,8 @@
 import type { Usuario } from '~/types'
 
 export function useAuth() {
-  const token = useCookie<string | null>('agendei_token', { sameSite: 'lax', maxAge: 60 * 60 * 8 })
-  const usuario = useCookie<Usuario | null>('agendei_usuario', { sameSite: 'lax', maxAge: 60 * 60 * 8 })
+  const token = useCookie<string | null>('sessao_token', { sameSite: 'lax', maxAge: 60 * 60 * 8 })
+  const usuario = useCookie<Usuario | null>('sessao_usuario', { sameSite: 'lax', maxAge: 60 * 60 * 8 })
   const config = useRuntimeConfig()
 
   const autenticado = computed(() => !!token.value)

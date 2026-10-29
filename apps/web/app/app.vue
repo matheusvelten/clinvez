@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { pt_br } from '@nuxt/ui/locale'
+
+const { marca } = useAppConfig()
+
+useHead({
+  titleTemplate: titulo => (titulo ? `${titulo} · ${marca.nome}` : marca.nome),
+})
 </script>
 
 <template>

@@ -2,7 +2,7 @@
 import type { DropdownMenuItem, TableColumn } from '@nuxt/ui'
 import type { Cliente, Paginado } from '~/types'
 
-useHead({ title: 'Clientes · Agendei' })
+useHead({ title: 'Clientes' })
 
 const api = useApi()
 const notificacao = useNotificacao()

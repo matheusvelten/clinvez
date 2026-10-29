@@ -44,8 +44,8 @@ async function main() {
 
   await prisma.usuario.createMany({
     data: [
-      { nome: 'Administrador', email: 'admin@agendei.dev', senhaHash: await bcrypt.hash('admin123', 10), perfil: 'ADMIN' },
-      { nome: 'Recepção', email: 'recepcao@agendei.dev', senhaHash: await bcrypt.hash('recepcao123', 10), perfil: 'ATENDENTE' },
+      { nome: 'Administrador', email: 'admin@clinvez.dev', senhaHash: await bcrypt.hash('admin123', 10), perfil: 'ADMIN' },
+      { nome: 'Recepção', email: 'recepcao@clinvez.dev', senhaHash: await bcrypt.hash('recepcao123', 10), perfil: 'ATENDENTE' },
     ],
   });
 
@@ -171,4 +171,3 @@ main()
     process.exit(1);
   })
   .finally(() => prisma.$disconnect());
-  

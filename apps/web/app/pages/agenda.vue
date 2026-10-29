@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Agendamento, Profissional, SugestaoAgendamento } from '~/types'
 
-useHead({ title: 'Agenda · Agendei' })
+useHead({ title: 'Agenda' })
 
 const api = useApi()
 const notificacao = useNotificacao()

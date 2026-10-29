@@ -2,6 +2,7 @@
 import type { DropdownMenuItem, NavigationMenuItem } from '@nuxt/ui'
 
 const { usuario, ehAdmin, sair } = useAuth()
+const { marca } = useAppConfig()
 const colorMode = useColorMode()
 const aberto = ref(false)
 
@@ -43,7 +44,7 @@ const opcoesUsuario = computed<DropdownMenuItem[][]>(() => [
       <template #header="{ collapsed }">
         <NuxtLink to="/" class="flex items-center gap-2.5 px-1">
           <img src="/favicon.svg" alt="" class="size-7 shrink-0">
-          <span v-if="!collapsed" class="text-lg font-semibold tracking-tight">Agendei</span>
+          <span v-if="!collapsed" class="text-lg font-semibold tracking-tight">{{ marca.nome }}</span>
         </NuxtLink>
       </template>
 

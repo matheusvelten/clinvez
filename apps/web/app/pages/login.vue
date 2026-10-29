@@ -3,9 +3,10 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 import { z } from 'zod'
 
 definePageMeta({ layout: false })
-useHead({ title: 'Entrar · Agendei' })
+useHead({ title: 'Entrar' })
 
 const { entrar } = useAuth()
+const { marca } = useAppConfig()
 const notificacao = useNotificacao()
 
 const schema = z.object({
@@ -14,7 +15,7 @@ const schema = z.object({
 })
 type Login = z.output<typeof schema>
 
-const estado = reactive({ email: 'admin@agendei.dev', senha: 'admin123' })
+const estado = reactive({ email: `admin@${marca.dominioDemo}`, senha: 'admin123' })
 const carregando = ref(false)
 
 async function enviar(evento: FormSubmitEvent<Login>) {
@@ -42,11 +43,11 @@ function usarPerfil(email: string, senha: string) {
       <div class="absolute -bottom-32 -left-20 size-96 rounded-full bg-primary-900/50 blur-3xl" />
       <div class="relative flex items-center gap-3">
         <img src="/favicon.svg" alt="" class="size-10 rounded-lg ring-2 ring-white/20">
-        <span class="text-2xl font-semibold tracking-tight">Agendei</span>
+        <span class="text-2xl font-semibold tracking-tight">{{ marca.nome }}</span>
       </div>
       <div class="relative max-w-md space-y-6">
         <h1 class="text-4xl font-semibold leading-tight">
-          A agenda da sua clínica, organizada do jeito certo.
+          {{ marca.slogan }}
         </h1>
         <ul class="space-y-3 text-primary-50/90">
           <li class="flex items-center gap-3"><UIcon name="i-lucide-calendar-check" class="size-5" /> Horários livres calculados automaticamente</li>
@@ -64,7 +65,7 @@ function usarPerfil(email: string, senha: string) {
         <div class="space-y-2">
           <div class="flex items-center gap-2 lg:hidden">
             <img src="/favicon.svg" alt="" class="size-8">
-            <span class="text-xl font-semibold">Agendei</span>
+            <span class="text-xl font-semibold">{{ marca.nome }}</span>
           </div>
           <h2 class="text-2xl font-semibold">Entrar</h2>
           <p class="text-muted">Acesse com sua conta para gerenciar a agenda.</p>
@@ -83,10 +84,10 @@ function usarPerfil(email: string, senha: string) {
         <UCard variant="subtle" :ui="{ body: 'space-y-3 sm:p-4' }">
           <p class="text-sm font-medium">Contas de demonstração</p>
           <div class="grid grid-cols-2 gap-2">
-            <UButton color="neutral" variant="outline" icon="i-lucide-shield-check" @click="usarPerfil('admin@agendei.dev', 'admin123')">
+            <UButton color="neutral" variant="outline" icon="i-lucide-shield-check" @click="usarPerfil(`admin@${marca.dominioDemo}`, 'admin123')">
               Admin
             </UButton>
-            <UButton color="neutral" variant="outline" icon="i-lucide-headset" @click="usarPerfil('recepcao@agendei.dev', 'recepcao123')">
+            <UButton color="neutral" variant="outline" icon="i-lucide-headset" @click="usarPerfil(`recepcao@${marca.dominioDemo}`, 'recepcao123')">
               Recepção
             </UButton>
           </div>

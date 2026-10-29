@@ -1,4 +1,4 @@
-# Agendei
+# Clinvez
 
 Sistema de agendamento para clínicas e consultórios: agenda por profissional, horários livres calculados automaticamente, bloqueio de conflitos, cadastro de clientes com histórico e painel com faturamento e taxa de comparecimento.
 
@@ -63,6 +63,8 @@ Projeto de portfólio full stack com **Nuxt 4 + Nuxt UI** no front e **NestJS + 
 | Banco | PostgreSQL 16 |
 | Infra | pnpm workspaces, Docker Compose |
 
+## Como rodar
+
 Pré-requisitos: Node 22+, pnpm 10+ e um banco PostgreSQL. Pode ser um banco gratuito na nuvem (Neon, Supabase), um PostgreSQL instalado na máquina ou o container do `docker-compose.yml`.
 
 **1. Instalar as dependências e criar os arquivos de ambiente**
@@ -92,21 +94,20 @@ pnpm dev:web
 ```
 
 Para alterar o schema do banco depois, edite `apps/api/prisma/schema.prisma` e rode `pnpm db:migrate`.
-```
 
 Acesse http://localhost:3000 e entre com uma das contas de demonstração:
 
 | Perfil | E-mail | Senha |
 | --- | --- | --- |
-| Administrador | admin@agendei.dev | admin123 |
-| Atendente | recepcao@agendei.dev | recepcao123 |
+| Administrador | admin@clinvez.dev | admin123 |
+| Atendente | recepcao@clinvez.dev | recepcao123 |
 
 O seed cria 45 clientes, 5 profissionais, 8 serviços e cerca de 2 mil atendimentos fictícios espalhados entre as últimas seis semanas e as próximas três, para que o painel e a agenda já abram com dados.
 
 ## Estrutura
 
 ```
-agendei/
+clinvez/
 ├── apps/
 │   ├── api/                  NestJS
 │   │   ├── prisma/           schema, migrations e seed

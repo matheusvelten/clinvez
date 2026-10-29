@@ -3,7 +3,7 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 import { z } from 'zod'
 import type { Profissional, Servico } from '~/types'
 
-useHead({ title: 'Profissionais · Agendei' })
+useHead({ title: 'Profissionais' })
 
 const api = useApi()
 const notificacao = useNotificacao()

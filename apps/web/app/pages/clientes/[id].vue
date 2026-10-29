@@ -20,7 +20,7 @@ const { data: cliente, status, refresh } = useAsyncData(
   () => api<ClienteDetalhe>(`/clientes/${rota.params.id}`),
 )
 
-useHead({ title: () => `${cliente.value?.nome ?? 'Cliente'} · Agendei` })
+useHead({ title: () => cliente.value?.nome ?? 'Cliente' })
 
 const modalCliente = ref(false)
 const modalAgendamento = ref(false)

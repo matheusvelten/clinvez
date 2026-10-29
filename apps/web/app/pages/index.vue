@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ResumoDashboard } from '~/types'
 
-useHead({ title: 'Painel · Agendei' })
+useHead({ title: 'Painel' })
 
 const api = useApi()
 const { usuario } = useAuth()

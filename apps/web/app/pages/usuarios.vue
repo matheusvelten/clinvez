@@ -4,7 +4,7 @@ import { z } from 'zod'
 import type { Perfil, Usuario } from '~/types'
 
 definePageMeta({ apenasAdmin: true })
-useHead({ title: 'Usuários · Agendei' })
+useHead({ title: 'Usuários' })
 
 const api = useApi()
 const notificacao = useNotificacao()
